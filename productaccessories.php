@@ -22,6 +22,7 @@ class ProductAccessories extends Module
     public function install()
     {
         if (parent::install()) {
+            $this->installDb();
         	$this->registerHook('displayProductAccessories');
             $this->registerHook('header');
         	$this->installTab();
