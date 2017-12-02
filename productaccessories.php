@@ -47,7 +47,7 @@ class ProductAccessories extends Module
     {
         $sql = Db::getInstance()->execute("CREATE TABLE IF NOT EXISTS ". _DB_PREFIX_ ."product_accessories (
               `id_combination` int(10) unsigned NOT NULL AUTO_INCREMENT,
-              `id_product` int(10) unsigned NOT NULL,
+              `id_product` int(10) unsigned NOT NULL UNIQUE,
               `product_ids` varchar(255),
               PRIMARY KEY(`id_combination`),
               KEY `id_combination` (`id_combination`)
