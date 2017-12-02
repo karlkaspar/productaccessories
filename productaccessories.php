@@ -19,30 +19,49 @@ class ProductAccessories extends Module
         $this->displayName = $this->l('Product Accessories Custom List');
         $this->description = $this->l('Product Accessories list for admin front end use');
     }
-
     public function install()
     {
         if (parent::install()) {
-        	$this->registerHook('ProductAccessories');
-            $this->installDb();
+        	$this->registerHook('displayProductAccessories');
+            $this->registerHook('header');
         	$this->installTab();
             return true;
         }
         return false;
-
     }
-
     public function uninstall()
     {
     	$this->uninstallTab();
         return parent::uninstall();
     }
-
-    public function hookProductAccessories($params)
+    public function hookDisplayHeader()
     {
-
+      $this->context->controller->addCSS($this->_path.'views/css/front/custom.css', 'all');
     }
-
+    public function hookDisplayProductAccessories()
+    {
+        $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https'?'https':'http';
+        $id_lang = 1;
+        $curProduct = (int)Tools::getValue('id_product');
+        $accessoryIds = Db::getInstance()->executeS("SELECT product_ids FROM ". _DB_PREFIX_ ."product_accessories WHERE id_product = ".$curProduct);
+        $accessoryIds = explode(',', $accessoryIds['0']['product_ids']);
+        $accessories = $arrayName = array();
+        foreach ($accessoryIds as $key => $id_product) {
+            $product = new Product($id_product, false, Context::getContext()->language->id);
+            $image = Image::getCover($id_product);
+            $link = new Link;
+            $imagePath = $link->getImageLink($product->link_rewrite, $image['id_image'], 'home_default');
+            $accessories[$key]['id_product'] = $id_product;
+            $accessories[$key]['image'] = $protocol.'://'.$imagePath;
+            $accessories[$key]['price'] = round(Product::getPriceStatic((int)$product->id), 2, PHP_ROUND_HALF_UP);
+        }
+        $this->context->smarty->assign(
+            array(
+                'accessories' => $accessories,
+            )
+        );
+        return $this->display(__FILE__, '/views/templates/front/accessories.tpl');
+    }
     public function installDb()
     {
         $sql = Db::getInstance()->execute("CREATE TABLE IF NOT EXISTS ". _DB_PREFIX_ ."product_accessories (
@@ -61,11 +80,6 @@ class ProductAccessories extends Module
         {
             return false;
         }
-    }
-
-    public function uninstallDb()
-    {
-
     }
 	public function installTab()
 	{

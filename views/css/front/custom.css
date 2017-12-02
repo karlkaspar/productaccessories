@@ -1,0 +1,31 @@
+.accessoriesContainer
+{
+	width: 100%;
+}
+.accessoryItem
+{
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+.accessoryUp, .accessoryDown
+{
+	text-align: center;
+}
+.accessoryPrice
+{
+	padding: 2px;
+	font-weight: bold;
+	font-size: 15px;
+}
+.acessoryQty
+{
+	padding: 5px;
+	max-width: 70px;
+	margin: 0 auto;
+	text-align: center;
+	margin-bottom: 5px;
+}
+.accessoryCart
+{
+	line-height: 34px;
+}
