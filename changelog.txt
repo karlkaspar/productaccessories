@@ -16,3 +16,4 @@ All notable changes to this project will be documented in this file.
 	- Layout style of accessories
 	- Min and Max amount of accessories to show, and how much to show on which device
 	- Better admin area data validation, for example remove spaces and other characters from product accessories value
+- Unit tests
