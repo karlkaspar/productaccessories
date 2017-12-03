@@ -1,0 +1,18 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+## [Unreleased]
+
+## [1.0.0] - 03.12.2017
+### Added
+- Admin area tab
+- Can add a product - accessories combination in admin area
+- Connectivity with database
+- Basic bootstrapped template for rendering accessories on product page
+
+## [1.0.1] - not yet released
+### Will Add
+- Configurable options to module admin area, such as:
+	- Layout style of accessories
+	- Min and Max amount of accessories to show, and how much to show on which device
+

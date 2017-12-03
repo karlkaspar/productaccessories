@@ -41,6 +41,7 @@ class ProductAccessories extends Module
     }
     public function hookDisplayProductAccessories()
     {
+        // Create array of products to display on front end
         $protocol = strtolower(substr($_SERVER["SERVER_PROTOCOL"],0,5))=='https'?'https':'http';
         $id_lang = 1;
         $curProduct = (int)Tools::getValue('id_product');
@@ -56,6 +57,7 @@ class ProductAccessories extends Module
             $accessories[$key]['image'] = $protocol.'://'.$imagePath;
             $accessories[$key]['price'] = round(Product::getPriceStatic((int)$product->id), 2, PHP_ROUND_HALF_UP);
         }
+        // Assign array to front end
         $this->context->smarty->assign(
             array(
                 'accessories' => $accessories,
@@ -65,6 +67,7 @@ class ProductAccessories extends Module
     }
     public function installDb()
     {
+        // Install the database
         $sql = Db::getInstance()->execute("CREATE TABLE IF NOT EXISTS ". _DB_PREFIX_ ."product_accessories (
               `id_combination` int(10) unsigned NOT NULL AUTO_INCREMENT,
               `id_product` int(10) unsigned NOT NULL UNIQUE,
@@ -84,6 +87,7 @@ class ProductAccessories extends Module
     }
 	public function installTab()
 	{
+        // Add admin area tab: Product Accessories
 		$id_tab = (int)Tab::getIdFromClassName('ProductAccessories');
 		if ($id_tab == 0)
 		{
@@ -101,6 +105,7 @@ class ProductAccessories extends Module
 	}
 	public function uninstallTab()
 	{
+        // Remove admin area tab: Product Accessories
 		$id_tab = (int)Tab::getIdFromClassName('ProductAccessories');
 		if ($id_tab)
 		{

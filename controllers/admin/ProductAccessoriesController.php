@@ -11,7 +11,7 @@ class ProductAccessoriesController extends ModuleAdminController
         parent::__construct();
 
         $id_lang = $this->context->language->id;
-
+        // Fields to be displayed on admin area
         $this->_select .= 'id_combination, id_product, product_ids';
         $this->fields_list = [
             'id_product'        => [
@@ -28,9 +28,9 @@ class ProductAccessoriesController extends ModuleAdminController
                 'class'  => 'fixed-width-xs',
             ]
         ];
-        
+        // CRUD Actions
         $this->actions = ['edit', 'delete'];
-
+        // Buld CRUD Actions
         $this->bulk_actions = array(
             'delete' => array(
                 'text'    => $this->l('Delete selected'),
@@ -38,6 +38,7 @@ class ProductAccessoriesController extends ModuleAdminController
                 'confirm' => $this->l('Delete selected items ?'),
             ),
         );
+        // Single item fields for editing page
         $this->fields_form = [
             'legend' => [
                 'title' => $this->l('Add or remove product accessories'),
