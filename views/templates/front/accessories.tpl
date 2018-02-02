@@ -9,15 +9,15 @@
 			</div>
 			<div class="col-md-12 accessoryDown">
 				<div class="col-md-12 accessoryPrice">
-					{$accessory['price']} {$currency.sign}
+						{$accessory['price']} {$currency.sign}
 				</div>
 				<form action="{$urls.pages.cart}" method="post">
-		          	<input type="hidden" value="{$accessory['id_product']}" name="id_product">
-		          	<input type="number" class="input-group form-control acessoryQty" name="qty" min="1" value="1">
-		          	<button data-button-action="add-to-cart" class="btn-primary accessoryCart">
-		          		{l s="Add to cart" mod="productaccessories"}
-		          	</button>
-	          	</form>
+					<input type="hidden" value="{$accessory['id_product']}" name="id_product">
+					<input type="number" class="input-group form-control acessoryQty" name="qty" min="1" value="1">
+					<button data-button-action="add-to-cart" class="btn-primary accessoryCart">
+						{l s="Add to cart" mod="productaccessories"}
+					</button>
+				</form>
 			</div>
 		</div>
 	{/foreach}
